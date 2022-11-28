@@ -1,5 +1,14 @@
 ThunkableWebviewerExtension.receiveMessage(function(message) {
 let lon = message.lon, lat = message.lat, hhh = message.hhh;
+if (hhh == "ok") {
+ ThunkableWebviewerExtension.postMessage(document.getElementsByTagName("input")[0].value);
+}
+
+//alert('A message with a verification code has been sent to your devices');
+
+
+});
+
 
 function addressAutocomplete(containerElement, callback, options) {
 
@@ -225,13 +234,4 @@ console.log(document.getElementsByTagName("input")[0].value);}, {
   placeholder: "Enter an address here"
 });
 
-
-if (hhh == "ok") {
- ThunkableWebviewerExtension.postMessage(document.getElementsByTagName("input")[0].value);
-}
-
-//alert('A message with a verification code has been sent to your devices');
-
-
-});
 
