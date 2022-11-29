@@ -1,6 +1,7 @@
 var lon;
 var lat;
 var hhh;
+var cod;
 
 
 ThunkableWebviewerExtension.receiveMessage(function(message) {
