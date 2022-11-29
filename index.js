@@ -1,5 +1,10 @@
+var lon;
+var lat;
+var hhh;
+
+
 ThunkableWebviewerExtension.receiveMessage(function(message) {
-let lon = message.lon, lat = message.lat, hhh = message.hhh;
+ lon = message.lon, lat = message.lat, hhh = message.hhh;
 if (hhh == "ok") {
  ThunkableWebviewerExtension.postMessage(document.getElementsByTagName("input")[0].value);
 }
