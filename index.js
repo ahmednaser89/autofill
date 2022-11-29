@@ -4,7 +4,7 @@ var hhh;
 
 
 ThunkableWebviewerExtension.receiveMessage(function(message) {
- lon = message.lon, lat = message.lat, hhh = message.hhh;
+ lon = message.lon, lat = message.lat, hhh = message.hhh, cod = message.cod;
 if (hhh == "ok") {
  ThunkableWebviewerExtension.postMessage(document.getElementsByTagName("input")[0].value);
 }
@@ -96,7 +96,7 @@ function addressAutocomplete(containerElement, callback, options) {
         // Get your own API Key on https://myprojects.geoapify.com
         const apiKey = "d5206dc793384328934f011e47ce9aef";
 
-        var url = `https://api.geoapify.com/v1/geocode/autocomplete?text=${encodeURIComponent(currentValue)}&format=json&limit=5&apiKey=${apiKey}&filter=circle:-${lon},${lat},50000`;
+        var url = `https://api.geoapify.com/v1/geocode/autocomplete?text=${encodeURIComponent(currentValue)}&format=json&limit=5&apiKey=${apiKey}&filter=circle:-${lon},${lat},50000&filter=countrycode:${cod}&type=amenity`;
 alert(url);
 
         fetch(url)
