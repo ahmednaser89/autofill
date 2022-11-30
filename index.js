@@ -19,8 +19,8 @@ alert(url);
 
             // check if the call was successful
             if (response.ok) {
-              response.json().then(data => resolve(data));
-                              ThunkableWebviewerExtension.postMessage(data);
+              response.json().then(data => ThunkableWebviewerExtension.postMessage(data);
+
 
             } else {
               response.json().then(data => reject(data));
