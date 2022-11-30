@@ -7,8 +7,30 @@ var txtt;
 ThunkableWebviewerExtension.receiveMessage(function(message) {
  lon = message.lon, lat = message.lat, hhh = message.hhh, cod = message.cod, txtt = message.txtt;;
 if (hhh == "ok") {
- //ThunkableWebviewerExtension.postMessage(document.getElementsByTagName("input")[0].value);
+          const apiKey = "d5206dc793384328934f011e47ce9aef";
+
+        var url = `https://api.geoapify.com/v1/geocode/autocomplete?text=${encodeURIComponent(currentValue)}&format=json&limit=5&apiKey=${apiKey}&filter=countrycode:${cod}&type=amenity`;
+//alert(url);
+
+        fetch(url)
+          .then(response => {
+            currentPromiseReject = null;
+
+            // check if the call was successful
+            if (response.ok) {
+              response.json().then(data => resolve(data));
+            } else {
+              response.json().then(data => reject(data));
+            }
+          });
+  
 }
+
+
+
+});
+
+
 function addressAutocomplete(containerElement, callback, options) {
 
   const MIN_ADDRESS_LENGTH = 3;
@@ -90,7 +112,7 @@ function addressAutocomplete(containerElement, callback, options) {
         // Get your own API Key on https://myprojects.geoapify.com
         const apiKey = "d5206dc793384328934f011e47ce9aef";
 
-        var url = `https://api.geoapify.com/v1/geocode/autocomplete?text=${txtt}&format=json&limit=5&apiKey=${apiKey}&filter=countrycode:${cod}&type=amenity`;
+        var url = `https://api.geoapify.com/v1/geocode/autocomplete?text=${encodeURIComponent(currentValue)}&format=json&limit=5&apiKey=${apiKey}&filter=countrycode:${cod}&type=amenity`;
 //alert(url);
 
         fetch(url)
@@ -109,7 +131,8 @@ function addressAutocomplete(containerElement, callback, options) {
       promise.then((data) => {
         // here we get address suggestions
         currentItems = data.results;
-ThunkableWebviewerExtension.postMessage(currentItems);
+          console.log(currentItems);
+
         /*create a DIV element that will contain the items (values):*/
         const autocompleteItemsElement = document.createElement("div");
         autocompleteItemsElement.setAttribute("class", "autocomplete-items");
@@ -192,12 +215,6 @@ ThunkableWebviewerExtension.postMessage(currentItems);
     callback(currentItems[index]);
   }
 
-
-
-});
-
-
-
   function closeDropDownList() {
     const autocompleteItemsElement = inputContainerElement.querySelector(".autocomplete-items");
     if (autocompleteItemsElement) {
@@ -236,6 +253,8 @@ ThunkableWebviewerExtension.postMessage(currentItems);
 }
 
 addressAutocomplete(document.getElementById("autocomplete-container"), (data) => {
+   ThunkableWebviewerExtension.postMessage(data.results);
+
 console.log(document.getElementsByTagName("input")[0].value);}, {
   placeholder: "Enter place name here"
 });
