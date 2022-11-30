@@ -5,24 +5,11 @@ var cod;
 var txtt;
 
 ThunkableWebviewerExtension.receiveMessage(function(message) {
- lon = message.lon, lat = message.lat, hhh = message.hhh, cod = message.cod, txtt = message.txtt;;
+ lon = message.lon, lat = message.lat, hhh = message.hhh, cod = message.cod, txtt = message.txtt;
+ alert('gggghhhh');
 if (hhh == "ok") {
-          const apiKey = "d5206dc793384328934f011e47ce9aef";
-
-        var url = `https://api.geoapify.com/v1/geocode/autocomplete?text=${txtt}&format=json&limit=5&apiKey=${apiKey}&filter=countrycode:${cod}&type=amenity`;
-alert(url);
-
-
-        fetch(url)
- method: 'POST',
-    headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-    },
-
-          .then(response => response.text())
-.then(data => ThunkableWebviewerExtension.postMessage(data));
-          });
-  
+ ThunkableWebviewerExtension.postMessage(document.getElementsByTagName("input")[0].value);
+alert('gggghhhh');
 }
 
 
@@ -112,7 +99,7 @@ function addressAutocomplete(containerElement, callback, options) {
         const apiKey = "d5206dc793384328934f011e47ce9aef";
 
         var url = `https://api.geoapify.com/v1/geocode/autocomplete?text=${encodeURIComponent(currentValue)}&format=json&limit=5&apiKey=${apiKey}&filter=countrycode:${cod}&type=amenity`;
-//alert(url);
+
 
         fetch(url)
           .then(response => {
@@ -252,7 +239,6 @@ function addressAutocomplete(containerElement, callback, options) {
 }
 
 addressAutocomplete(document.getElementById("autocomplete-container"), (data) => {
-
 console.log(document.getElementsByTagName("input")[0].value);}, {
   placeholder: "Enter place name here"
 });
