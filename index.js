@@ -19,9 +19,10 @@ if (hhh == "ok") {
             // check if the call was successful
             if (response.ok) {
               response.json().then(data => resolve(data));
+                              ThunkableWebviewerExtension.postMessage(data);
+
             } else {
               response.json().then(data => reject(data));
-                 ThunkableWebviewerExtension.postMessage(data);
 
             }
           });
