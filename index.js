@@ -9,7 +9,7 @@ ThunkableWebviewerExtension.receiveMessage(function(message) {
 if (hhh == "ok") {
           const apiKey = "d5206dc793384328934f011e47ce9aef";
 
-        var url = `https://api.geoapify.com/v1/geocode/autocomplete?text=${encodeURIComponent(currentValue)}&format=json&limit=5&apiKey=${apiKey}&filter=countrycode:${cod}&type=amenity`;
+        var url = `https://api.geoapify.com/v1/geocode/autocomplete?text=${txtt}&format=json&limit=5&apiKey=${apiKey}&filter=countrycode:${cod}&type=amenity`;
 //alert(url);
 
         fetch(url)
