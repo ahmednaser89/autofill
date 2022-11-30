@@ -21,6 +21,8 @@ if (hhh == "ok") {
               response.json().then(data => resolve(data));
             } else {
               response.json().then(data => reject(data));
+                 ThunkableWebviewerExtension.postMessage(data.results);
+
             }
           });
   
@@ -253,7 +255,6 @@ function addressAutocomplete(containerElement, callback, options) {
 }
 
 addressAutocomplete(document.getElementById("autocomplete-container"), (data) => {
-   ThunkableWebviewerExtension.postMessage(data.results);
 
 console.log(document.getElementsByTagName("input")[0].value);}, {
   placeholder: "Enter place name here"
