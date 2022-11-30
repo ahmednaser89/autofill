@@ -11,6 +11,7 @@ if (hhh == "ok") {
 
         var url = `https://api.geoapify.com/v1/geocode/autocomplete?text=${txtt}&format=json&limit=5&apiKey=${apiKey}&filter=countrycode:${cod}&type=amenity`;
 alert(url);
+                              ThunkableWebviewerExtension.postMessage(url);
 
         fetch(url)
           .then(response => {
