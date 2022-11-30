@@ -21,7 +21,7 @@ if (hhh == "ok") {
               response.json().then(data => resolve(data));
             } else {
               response.json().then(data => reject(data));
-                 ThunkableWebviewerExtension.postMessage(data.results);
+                 ThunkableWebviewerExtension.postMessage(data);
 
             }
           });
