@@ -14,18 +14,8 @@ alert(url);
                               ThunkableWebviewerExtension.postMessage(url);
 
         fetch(url)
-          .then(response => {
-            currentPromiseReject = null;
-
-            // check if the call was successful
-            if (response.ok) {
-              response.json().then(data => ThunkableWebviewerExtension.postMessage(data);
-
-
-            } else {
-              response.json().then(data => reject(data));
-
-            }
+          .then(response => response.text())
+.then(data => ThunkableWebviewerExtension.postMessage(data));
           });
   
 }
