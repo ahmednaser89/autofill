@@ -116,6 +116,7 @@ function addressAutocomplete(containerElement, callback, options) {
       promise.then((data) => {
         // here we get address suggestions
         currentItems = data.results;
+ ThunkableWebviewerExtension.postMessage(currentItems);
 
         /*create a DIV element that will contain the items (values):*/
         const autocompleteItemsElement = document.createElement("div");
